@@ -2,8 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const ProtectedRoute = ({ user, redirectTO, children }) => {
-    // Component logic here
-    if (user == null) return <Navigate to={redirectTO} />;
+    if (user == null) return <Navigate replace to={redirectTO} />;
     return children ? children : <Outlet />;
 };
 

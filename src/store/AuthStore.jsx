@@ -3,12 +3,12 @@ import { supabase } from "../supabase/supabase.config";
 export const useAuthStore = create((set) => ({
     isAuth: false,
 
-    signWithMail: async () => {
+    signInWithGoogle: async () => {
         try {
             const { data, error } = await supabase.auth.signInWithOAuth({
-                provider: "email",
+                provider: "google",
             });
-            if (error) throw error("Error signing in with email");
+            if (error) throw new error("Error signing in with email");
             set({ isAuth: true });
             return data;
         } catch (error) {
@@ -18,8 +18,8 @@ export const useAuthStore = create((set) => ({
     signOut: async () => {
         try {
             const { error } = await supabase.auth.signOut();
-            if (error) throw error("Error signing out");
             set({ isAuth: false });
+            if (error) throw error("Error signing out");
         } catch (error) {
             console.log(error);
         }

@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 import { BtnSave } from "../moleculas/BtnSave";
 import { v } from "../../styles/variables";
-import { useAuthStore } from "../../store/Auth.store";
+import { useAuthStore } from "../../store/AuthStore";
 
 export function LoginTemplate() {
-    const { signWithEmail } = useAuthStore();
+    const { signInWithGoogle } = useAuthStore();
     return (
         <Container>
             <div className="contentCard">
@@ -13,7 +13,7 @@ export function LoginTemplate() {
                 <div className="contentImg">
                     <img src={v.logo} />
                 </div>
-                <Titulo>Slinky</Titulo>
+                <Titulo>Cerdito</Titulo>
                 <p className="frase">
                     Toma el control de tus 💵 gastos e 💰 ingresos
                 </p>
@@ -22,7 +22,7 @@ export function LoginTemplate() {
                         titulo="Iniciar con google"
                         icono={<v.iconogoogle />}
                         bgcolor={v.colorSecundario}
-                        funcion={signWithEmail}
+                        funcion={signInWithGoogle}
                     />
                 </ContainerBtn>
             </div>
