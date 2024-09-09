@@ -1,69 +1,24 @@
 import styled from "styled-components";
 import { v } from "../../../styles/variables";
 import { LinksArray, SecondarylinksArray } from "../../../utils/dataEstatica";
-import { NavLink } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
 
 export function Sidebar({ state, setState }) {
     return (
-        <Main isOpen={state}>
-            <span className="Sidebarbutton" onClick={() => setState(!state)}>
-                {<v.iconoFlechabajo />}
-            </span>
-            <Container isOpen={state} className={state ? "active" : ""}>
+        <Main>
+            <Container>
                 <div className="Logocontent">
                     <div className="imgcontent">
                         <img src={v.logo} />
                     </div>
-                    <h2>Cerdys</h2>
                 </div>
-                {LinksArray.map(({ icon, label, to }) => (
-                    <div
-                        className={
-                            state ? "LinkContainer active" : "LinkContainer"
-                        }
-                        key={label}
-                    >
-                        <NavLink
-                            to={to}
-                            className={({ isActive }) =>
-                                `Links${isActive ? ` active` : ``}`
-                            }
-                        >
-                            <div className="Linkicon">{icon}</div>
-                            <span
-                                className={state ? "label_ver" : "label_oculto"}
-                            >
-                                {label}
-                            </span>
-                            {/* {state && <span>{label}</span>} */}
-                        </NavLink>
+                <h2>Cerdito</h2>
+                {LinksArray.map(({ icono, label, to }, index) => (
+                    <div key={index} to={to}>
+                        <div className="Linkicon">{icono}</div>
+                        <span>{label}</span>
                     </div>
                 ))}
-                <Divider />
-                {SecondarylinksArray.map(({ icon, label, to }) => (
-                    <div
-                        className={
-                            state ? "LinkContainer active" : "LinkContainer"
-                        }
-                        key={label}
-                    >
-                        <NavLink
-                            to={to}
-                            className={({ isActive }) =>
-                                `Links${isActive ? ` active` : ``}`
-                            }
-                        >
-                            <div className="Linkicon">{icon}</div>
-                            <span
-                                className={state ? "label_ver" : "label_oculto"}
-                            >
-                                {label}
-                            </span>
-                            {/* {state && <span>{label}</span>} */}
-                        </NavLink>
-                    </div>
-                ))}
-                <Divider />
             </Container>
         </Main>
     );
@@ -75,7 +30,8 @@ const Container = styled.div`
     padding-top: 20px;
     z-index: 1;
     height: 100%;
-    width: 65px;
+    width: 150px;
+    padding: 20px;
     transition: 0.1s ease-in-out;
     overflow-y: auto;
     overflow-x: hidden;
@@ -194,10 +150,4 @@ const Main = styled.div`
             isOpen ? `translateX(162px) rotate(3.142rad)` : `initial`};
         color: ${(props) => props.theme.text};
     }
-`;
-const Divider = styled.div`
-    height: 1px;
-    width: 100%;
-    background: ${(props) => props.theme.bg4};
-    margin: ${() => v.lgSpacing} 0;
 `;

@@ -5,8 +5,8 @@ import { ProtectedRoute } from "../hooks/ProtectedRoutes";
 import { UserAuth } from "../context/AuthContext";
 
 export function MyRoutes() {
-    // Usar el hook UserAuth para obtener el contexto
-    const user = UserAuth();
+    const { user } = UserAuth();
+    console.log(user); // Verificar el valor de `user`
 
     return (
         <BrowserRouter>
